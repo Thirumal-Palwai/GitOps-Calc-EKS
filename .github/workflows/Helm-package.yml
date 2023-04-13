@@ -13,7 +13,7 @@ on:
     branches: [ "main" ]
     paths: 
     - 'eks/**'
-    
+
 jobs:
   
   build:
@@ -26,6 +26,9 @@ jobs:
     
     - name: Login into AWS
       run:  aws configure set aws_access_key_id "AKIAZSHWKCDQZCNP4M6G" && aws configure set aws_secret_access_key ${{ secrets.AWS_KEY }} && aws configure set region "us-east-1" && aws configure set output "None"
-    
-    - name: Create EKS cluster
-      run: terraform -chdir=eks init && terraform -chdir=eks apply -auto-approve
+  
+    - name: Create an S3 Bucket
+      run: echo "ID=$(date +%s)" >> $GITHUB_ENV && aws s3api create-bucket --bucket EKS-backend-$ID --region us-east-1 && gh variable set vars.backends3 --body "$ID"
+     
+#    - name: Create EKS cluster
+#      run: terraform -chdir=eks init && terraform -chdir=eks apply -auto-approve

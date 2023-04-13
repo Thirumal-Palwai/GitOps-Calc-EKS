@@ -28,4 +28,4 @@ jobs:
       run:  aws configure set aws_access_key_id "AKIAZSHWKCDQZCNP4M6G" && aws configure set aws_secret_access_key ${{ secrets.AWS_KEY }} && aws configure set region "us-east-1" && aws configure set output "None"
     
     - name: Create EKS cluster
-      run: terraform -chdir=eks apply -auto-approve
+      run: terraform -chdir=eks init && terraform -chdir=eks apply -auto-approve

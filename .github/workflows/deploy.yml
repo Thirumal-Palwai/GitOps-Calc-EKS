@@ -49,7 +49,7 @@ jobs:
         gh variable list
         gh variable set BACKENDS3 --body "${{ env.ID }}"
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: "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"
         OWNER: ${{ github.repository_owner }}
         REPO: ${{ github.event.repository.name }}
      

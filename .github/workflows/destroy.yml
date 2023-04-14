@@ -18,7 +18,7 @@ jobs:
       run: aws configure set aws_access_key_id "AKIAZSHWKCDQZCNP4M6G" && aws configure set aws_secret_access_key ${{ secrets.AWS_KEY }} && aws configure set region "us-east-1" && aws configure set output "text"
      
     - name: Destroy EKS cluster
-      run: echo eksbackend-${{ secrets.BACKENDS3 }} | terraform -chdir=eks init && terraform -chdir=eks destroy -auto-approve
+      run: echo eksbackend-${{ vars.BACKENDS3 }} | terraform -chdir=eks init && terraform -chdir=eks destroy -auto-approve
       
     - name: Delete S3 Bucket
-      run: aws s3 rb s3://eksbackend-${{ secrets.BACKENDS3 }} --force  
+      run: aws s3 rb s3://eksbackend-${{ vars.BACKENDS3 }} --force  

@@ -18,7 +18,7 @@ terraform {
     
     backend "s3" {
         key    = "test.tfstate"
-        region = "us-east-2"
+        region = "us-east-1"
     }
     
 }

@@ -15,4 +15,10 @@ terraform {
     }
 
     required_version = "~>1.0"
+    
+    backend "s3" {
+        key    = "test.tfstate"
+        region = "us-east-2"
+    }
+    
 }

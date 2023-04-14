@@ -43,7 +43,7 @@ jobs:
         aws s3api create-bucket --bucket eksbackend-${{ env.ID }} --region us-east-1
 
     - name: Create an S3 Bucket
-      run: gh variable set vars.backends3 --body "${{ env.ID }}"
+      run: gh variable set BACKENDS3 --body "${{ env.ID }}"
       env:
         GH_TOKEN: ${{ github.token }}
      

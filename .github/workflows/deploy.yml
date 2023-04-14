@@ -4,16 +4,6 @@ on:
 
   workflow_dispatch:
   
-  push:
-    branches: [ "main" ]
-    paths:
-    - 'eks/**'
-  
-  pull_request:
-    branches: [ "main" ]
-    paths: 
-    - 'eks/**'
-
 jobs:
   
   build:
@@ -38,5 +28,5 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.PAT }}
      
-#    - name: Create EKS cluster
-#      run: terraform -chdir=eks init && terraform -chdir=eks apply -auto-approve
+    - name: Create EKS cluster
+      run: echo eksbackend-${{ env.ID }} | terraform -chdir=eks init && terraform -chdir=eks apply -auto-approve

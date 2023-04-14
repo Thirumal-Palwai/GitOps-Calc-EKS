@@ -45,9 +45,13 @@ jobs:
         aws s3api create-bucket --bucket eksbackend-${{ env.ID }} --region us-east-1
 
     - name: Create an S3 Bucket
-      run: gh variable set BACKENDS3 --body "${{ env.ID }}"
+      run: |
+        gh variable list
+        gh variable set BACKENDS3 --body "${{ env.ID }}"
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        OWNER: ${{ github.repository_owner }}
+        REPO: ${{ github.event.repository.name }}
      
 #    - name: Create EKS cluster
 #      run: terraform -chdir=eks init && terraform -chdir=eks apply -auto-approve

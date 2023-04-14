@@ -27,9 +27,12 @@ jobs:
     - name: Login into AWS
       run: aws configure set aws_access_key_id "AKIAZSHWKCDQZCNP4M6G" && aws configure set aws_secret_access_key ${{ secrets.AWS_KEY }} && aws configure set region "us-east-1" && aws configure set output "text"
   
-    - name: Create an S3 Bucket
+    - name: Generate Unique ID for S3
       run: |
         echo "ID=$(date +%s)" >> $GITHUB_ENV
+        
+    - name: Create an S3 Bucket
+      run: |
         aws s3api create-bucket --bucket eksbackend-${{ env.ID }} --region us-east-1
         gh variable set BACKENDS3 --body "${{ env.ID }}"
       env:

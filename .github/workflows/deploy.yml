@@ -23,7 +23,7 @@ jobs:
         
     - name: Create an S3 Bucket
       run: |
-        aws s3api create-bucket --bucket eksbackend-${{ env.ID }} --region us-east-1
+        aws s3api create-bucket --bucket eksbackend-${{ env.ID }} --region us-east-2
         gh variable set BACKENDS3 --body "${{ env.ID }}"
       env:
         GH_TOKEN: ${{ secrets.PAT }}

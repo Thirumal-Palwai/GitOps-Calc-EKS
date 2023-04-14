@@ -20,8 +20,6 @@ jobs:
     
     runs-on: ubuntu-latest
     
-    permissions: write-all
-    
     steps:
     
     - uses: actions/checkout@v3
@@ -31,27 +29,11 @@ jobs:
   
     - name: Create an S3 Bucket
       run: |
-        echo "ID=$(date +%s)"
-        echo $(date +%s)
         echo "ID=$(date +%s)" >> $GITHUB_ENV
-
-    - name: Create an S3 Bucket
-      run: |
-        echo ${{ env.ID }}
-        echo eksbackend-${{ env.ID }}
-
-    - name: Create an S3 Bucket
-      run: |
         aws s3api create-bucket --bucket eksbackend-${{ env.ID }} --region us-east-1
-
-    - name: Create an S3 Bucket
-      run: |
-        gh variable list
         gh variable set BACKENDS3 --body "${{ env.ID }}"
       env:
         GH_TOKEN: ${{ secrets.PAT }}
-        OWNER: ${{ github.repository_owner }}
-        REPO: ${{ github.event.repository.name }}
      
 #    - name: Create EKS cluster
 #      run: terraform -chdir=eks init && terraform -chdir=eks apply -auto-approve

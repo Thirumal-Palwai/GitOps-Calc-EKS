@@ -30,6 +30,8 @@ jobs:
     - name: Create an S3 Bucket
       run: |
         echo "ID=$(date +%s)" >> $GITHUB_ENV
+        echo $ID
+        echo eksbackend-$ID
         aws s3api create-bucket --bucket eksbackend-$ID --region us-east-1
         gh variable set vars.backends3 --body "$ID"
      

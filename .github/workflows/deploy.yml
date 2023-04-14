@@ -45,7 +45,7 @@ jobs:
     - name: Create an S3 Bucket
       run: gh variable set BACKENDS3 --body "${{ env.ID }}"
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: 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
      
 #    - name: Create EKS cluster
 #      run: terraform -chdir=eks init && terraform -chdir=eks apply -auto-approve
